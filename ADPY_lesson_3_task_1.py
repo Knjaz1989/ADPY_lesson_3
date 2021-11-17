@@ -1,6 +1,6 @@
 class FlatIterator:
 	def __init__(self, matrix: list):
-		self.matrix = matrix
+		self.matrix = [item for i in matrix for item in i]
 
 	def __iter__(self):
 		self.count = -1
@@ -10,14 +10,13 @@ class FlatIterator:
 		self.count += 1
 		if self.count == len(self.matrix):
 			raise StopIteration
-		trio = '\n'.join(self.matrix[self.count])
-		return trio
+		return self.matrix[self.count]
 
 
 nested_list = [
 	['a', 'b', 'c'],
 	['d', 'e', 'f'],
-	['g', 'h', 'i']
+	[1, 2, None]
 ]
 for item in FlatIterator(nested_list):
 	print(item)

@@ -9,15 +9,16 @@ def recursion(item_list: list):
 
 def flat_generator(matrix: list):
     count = 0
+    matrix = recursion([item for i in matrix for item in i])
     while count != len(matrix):
-        yield '\n'.join(recursion(matrix[count]))
+        yield matrix[count]
         count += 1
 
 
 nested_list = [
-    [['a', ['1', '2']], ['b', '3', '4'], 'c'],
+    [['a', [1, 2]], ['b', 3, 4], 'c'],
     ['d', 'e', 'f'],
-    ['g', 'h', 'i']
+    [1, 2, None]
 ]
 
 for item in flat_generator(nested_list):
